@@ -1,0 +1,32 @@
+The document describes how to use the physically interpretable matrix factorization (piMF) method.
+
+Data_Example.mat file contains a dataset for demonstrating the piMF method. It contains the following data for the system
+time: 50 x 1 dimentional matrix of time stamps
+C   : 50 x 7 dimentional matrix of concentration for seven species
+A   : 4  x 7 dimentional matrix of atomic matrix
+
+Main_File_For_piMF.m demonstrates how to provide different information for applying piMF function. 
+
+
+piMF.m function applies the physicall interpetable matrix factorization approach to reaction variant form of C. It uses an alternating least-squares
+algorithm to solve the problem. For given X, The constrained least-squares problem is solved using the algorithm proposed in Ayyar and Bhatt, 2019 (https://arxiv.org/pdf/1811.01383.pdf).  The nonliear least squares is solved
+using quadratic programming approach. In-built function, quadprog, is used to solve this problem.
+  
+The following inputs have to be provided for running piMF.m.
+
+Inputs:
+C_RV: n X m dimensional reaction variants concentration matrix. The computation of C_RV form is shown in Main_File_For_piMF.m file. 
+S_set: Set of integer the stoichiometric matrix can take as a vector from
+the lowest to the largest value
+R : Number of reactions in the system or rank of reaction network (N)
+K:  Sparsity: Maximum number of species that can participate
+Dia: Search diameter for sphere decoding algorithm
+W_in: Initialization of the extents of reaction 
+
+Outputs
+X_out: n x R dimensional matrix of the extents of reaction
+N_out : R x m dimensional matrix of the reaction networks
+
+
+twoDspheredecRank.m solves the constrained least-squares problem arising in piMF. See Ayyar and Bhatt, 2019 for the details.
+
